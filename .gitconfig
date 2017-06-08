@@ -1,0 +1,5 @@
+[user]
+	name = Joe Barnes
+	email = joe@joescii.com
+[core]
+	editor = vim
