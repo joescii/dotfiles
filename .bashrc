@@ -43,6 +43,15 @@ function sl {
   ln -s $2 $1
 }
 
+function kill-9-all {
+  if [ $# -eq 0 ]; then
+    echo "kill-9-all <process_name>"
+    return -1
+  fi
+
+  ps -ef | grep $1 | grep -v grep | awk '{print $2}' | xargs kill -9
+}
+
 export code=~/Documents/code/
 export oss=$code/oss/
 export clients=$code/clients/
