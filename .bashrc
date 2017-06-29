@@ -2,6 +2,36 @@ eval "$(thefuck --alias)"
 
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/joescii/.conscript/bin:$PATH"
 
+function init {
+  dotfiles=(
+    .bashrc
+    .gitconfig
+    .profile
+  )
+  dotclients=(
+    .bintray
+    .sbt
+  )
+  lnLoop .dotfiles "${dotfiles[@]}" 
+  lnLoop .clients "${dotclients[@]}" 
+
+  md $code
+  md $clients
+  md $oss
+  md $lift
+}
+
+function lnLoop {
+  dir=$1
+  shift
+  arr=("$@")
+  for f in "${arr[@]}"; do
+    echo "linking ~/$dir/$f..."
+    rm -fr ~/$f
+    ln -s ~/$dir/$f ~/$f
+  done
+}
+
 function sbt-dependencyClasspath {
   sbt -Dsbt.log.format=false "show $1dependencyClasspath" | tr ',' '\n'
 }
@@ -22,6 +52,10 @@ function jdk7 {
 function jdk8 {
   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home
   export SBT_OPTS="-Xms512M -Xmx2G -Xss256m -XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=512M"
+}
+
+function md {
+  [[ -d $1 ]] || mkdir -p $1
 }
 
 function git-pull {
