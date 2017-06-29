@@ -32,8 +32,12 @@ function lnLoop {
   done
 }
 
+function sbtBw {
+  sbt -Dsbt.log.format=false "$@"
+}
+
 function sbt-dependencyClasspath {
-  sbt -Dsbt.log.format=false "show $1dependencyClasspath" | tr ',' '\n'
+  sbtBw "show $1dependencyClasspath" | tr ',' '\n'
 }
 
 export sbt_home=`which sbt`
