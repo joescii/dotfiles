@@ -73,7 +73,10 @@ function git-pull {
     remote=$1
     branch=$2
   fi
+ 
+  echo "Fetching remote branches..."
 
+  git fetch $remote
   git checkout -b $branch $remote/$branch
 }
 
