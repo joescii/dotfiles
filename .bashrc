@@ -93,6 +93,16 @@ function kill-9-all {
   ps -ef | grep $1 | grep -v grep | awk '{print $2}' | xargs kill -9
 }
 
+function hoisted {
+  if [ $# -gt 0 ]; then
+    dir=$1
+  else
+    dir=$PWD
+  fi
+
+  java -jar ~/tools/hoisted.jar -server $dir
+}
+
 export code=~/Documents/code/
 export oss=$code/oss/
 export clients=$code/clients/
