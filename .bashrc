@@ -49,14 +49,17 @@ function public-ip {
 
 function jdk7 {
   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
-  export SBT_OPTS="-Xms512M -Xmx2G -Xss256m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=512M"
+  export SBT_OPTS="-Xms512M -Xmx2G -Xss256m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=512M -Dsun.io.serialization.extendedDebugInfo=true"
   export MAVEN_OPTS=$SBT_OPTS
 }
 
 function jdk8 {
   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home
-  export SBT_OPTS="-Xms512M -Xmx2G -Xss256m -XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=512M"
+  export SBT_OPTS="-Xms512M -Xmx2G -Xss256m -XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=512M -Dsun.io.serialization.extendedDebugInfo=true"
 }
+
+# Call jdk8 to set our options (by default this is already the JAVA_HOME)
+jdk8
 
 function md {
   [[ -d $1 ]] || mkdir -p $1
