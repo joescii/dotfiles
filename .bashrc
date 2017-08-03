@@ -43,6 +43,14 @@ function sbt-dependencyClasspath {
 export sbt_home=`which sbt`
 export sbt_jar=`tail -1 $sbt_home | awk -F\" '{print $2 "-launch.jar"}'`
 
+function snapshot-report {
+  find ~/.ivy2/cache/ | grep SNAPSHOT 
+}
+
+function snapshot-purge {
+  snapshot-report | xargs rm -fr 
+}
+
 function public-ip {
   curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//' | tr -d '\n'
 }
