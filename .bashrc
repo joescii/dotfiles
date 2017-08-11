@@ -40,6 +40,10 @@ function sbt-dependencyClasspath {
   sbtBw "show $1dependencyClasspath" | tr ',' '\n'
 }
 
+function sbt-fullClasspath {
+  sbtBw "show $1fullClasspath" | tr ',' '\n'
+}
+
 export sbt_home=`which sbt`
 export sbt_jar=`tail -1 $sbt_home | awk -F\" '{print $2 "-launch.jar"}'`
 
