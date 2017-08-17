@@ -131,6 +131,10 @@ function docker-cleanup {
   docker rm $(docker ps -q -f status=exited)
 }
 
+alias mysql-start='mysql.server start'
+alias mysql-stop='mysql.server stop'
+alias mysql-clean-jetty='mysql -uroot -e "drop table lift_sessions.JettySessions; drop table lift_sessions.JettySessionIds;"'
+
 export code=~/Documents/code/
 export oss=$code/oss/
 export clients=$code/clients/
