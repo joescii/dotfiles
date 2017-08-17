@@ -127,6 +127,10 @@ function hoisted {
   java -jar ~/tools/hoisted.jar -server $dir
 }
 
+function docker-cleanup {
+  docker rm $(docker ps -q -f status=exited)
+}
+
 export code=~/Documents/code/
 export oss=$code/oss/
 export clients=$code/clients/
