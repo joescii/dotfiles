@@ -19,6 +19,9 @@ function init {
   md $clients
   md $oss
   md $lift
+
+  md ~/.m2/
+  ln -s $clients/settings.xml ~/.m2/settings.xml
 }
 
 function lnLoop {
