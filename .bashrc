@@ -21,7 +21,7 @@ function init {
   md $lift
 
   md ~/.m2/
-  ln -s $clients/settings.xml ~/.m2/settings.xml
+  ln -s $clients/.m2/settings.xml ~/.m2/settings.xml
 }
 
 function lnLoop {
