@@ -78,7 +78,7 @@ function jdk7 {
 }
 
 function jdk8 {
-  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home
   export SBT_OPTS="-Xms512M -Xmx2G -Xss256m -XX:+CMSClassUnloadingEnabled -Dsun.io.serialization.extendedDebugInfo=true"
 }
 
