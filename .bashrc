@@ -132,6 +132,7 @@ function hoisted {
 
 function docker-cleanup {
   docker rm $(docker ps -q -f status=exited)
+  docker volume rm $(docker volume ls -qf dangling=true)
 }
 
 alias mysql-start='mysql.server start'
