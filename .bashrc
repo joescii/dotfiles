@@ -131,6 +131,7 @@ function hoisted {
 }
 
 function docker-cleanup {
+  docker ps | awk '{print $1}' | grep -v CONTAINER | xargs docker kill
   docker rm $(docker ps -q -f status=exited)
   docker volume rm $(docker volume ls -qf dangling=true)
   docker rmi $(docker images | grep '<none>' | awk '{print $3}')
