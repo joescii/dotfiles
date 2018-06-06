@@ -11,6 +11,7 @@ function init {
     .bashrc
     .gitconfig
     .profile
+    .vimrc
   )
   dotclients=(
     .bintray
