@@ -111,6 +111,8 @@ function git-pull {
   git checkout -b $branch $remote/$branch
 }
 
+alias gs='git status --short'
+
 function sl {
   ln -s $2 $1
 }
