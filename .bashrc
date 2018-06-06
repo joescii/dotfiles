@@ -2,6 +2,10 @@ eval "$(thefuck --alias)"
 
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/joescii/.conscript/bin:$PATH"
 
+# Supposedly this stops MacOS from clobbering history files 
+# https://superuser.com/questions/950403/bash-history-not-preserved-between-terminal-sessions-on-mac 
+export SHELL_SESSION_HISTORY=0
+
 function init {
   dotfiles=(
     .bashrc
