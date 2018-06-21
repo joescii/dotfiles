@@ -6,6 +6,8 @@ PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/joescii/.co
 # https://superuser.com/questions/950403/bash-history-not-preserved-between-terminal-sessions-on-mac 
 export SHELL_SESSION_HISTORY=0
 
+set -o vi
+
 function init {
   dotfiles=(
     .bashrc
@@ -26,7 +28,7 @@ function init {
   md $lift
 
   md ~/.m2/
-  ln -s ~/.clients/.m2/settings.xml ~/.m2/settings.xml
+#  ln -s ~/.clients/.m2/settings.xml ~/.m2/settings.xml
 }
 
 function lnLoop {
