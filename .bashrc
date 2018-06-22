@@ -87,6 +87,7 @@ function jdk7 {
 function jdk8 {
   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home
   export SBT_OPTS="-Xms512M -Xmx2G -Xss256m -XX:+CMSClassUnloadingEnabled -Dsun.io.serialization.extendedDebugInfo=true"
+  export MAVEN_OPTS=$SBT_OPTS
 }
 
 # Call jdk8 to set our options (by default this is already the JAVA_HOME)
