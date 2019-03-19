@@ -121,6 +121,25 @@ function git-pull {
   git checkout -b $branch $remote/$branch
 }
 
+function git-archive {
+  if [ $# -eq 0 ]; then
+    namespace=`date +"%Y-%m-%d"`
+  else
+    namespace=$1
+  fi
+
+  git checkout master
+  git pull origin master --rebase
+
+  git branch | grep -v "master" | while read branch ; do 
+    git tag archive/$namespace/$branch $branch
+    git branch -D $branch
+  done
+
+  git fetch --prune --tags
+  git stash clear
+}
+
 alias gs='git status --short'
 
 function sl {
