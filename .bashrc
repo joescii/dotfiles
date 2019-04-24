@@ -72,7 +72,8 @@ function snapshot-purge {
 }
 
 function public-ip {
-  curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//' | tr -d '\n'
+  # Append tr if you want this in a variable without the newline:  | tr -d '\n'
+  curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
 }
 
 function cert-fetch {
