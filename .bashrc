@@ -76,6 +76,10 @@ function public-ip {
   curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
 }
 
+function private-ip {
+  ipconfig getifaddr en0
+}
+
 function cert-fetch {
   if [ $# -eq 0 ]; then
     echo "USAGE: cert-fetch <domain>"
