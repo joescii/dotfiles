@@ -177,10 +177,6 @@ function docker-cleanup {
   docker rmi $(docker images | grep '<none>' | awk '{print $3}')
 }
 
-alias mysql-start='mysql.server start'
-alias mysql-stop='mysql.server stop'
-alias mysql-clean-jetty='mysql -uroot -e "drop table lift_sessions.JettySessions; drop table lift_sessions.JettySessionIds;"'
-
 export code=~/Documents/code/
 export oss=$code/oss/
 export clients=$code/clients/
