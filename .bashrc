@@ -177,6 +177,11 @@ function docker-cleanup {
   docker rmi $(docker images | grep '<none>' | awk '{print $3}')
 }
 
+export psql-version=9.5.17
+alias psql-start='docker run --rm --name psql-docker -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres:${psql-version}'
+alias psql-stop='docker kill $(docker ps | grep psql-docker | awk {'print $1'})'
+alias psql='docker exec -it psql-docker psql -h localhost -U postgres'
+
 export code=~/Documents/code/
 export oss=$code/oss/
 export clients=$code/clients/
