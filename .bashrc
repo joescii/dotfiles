@@ -179,7 +179,10 @@ function docker-cleanup {
 
 export psqlVersion=9.5.17
 function psql-start { 
-  docker run --rm --name psql-docker -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres:$psqlVersion
+  docker run --rm --name psql-docker -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 \
+    -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data \
+    -v $HOME/db-backups:/var/db-backups \
+    postgres:$psqlVersion
 }
 function psql-stop {
   docker kill $(docker ps | grep psql-docker | awk {'print $1'})
