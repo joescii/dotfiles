@@ -170,6 +170,8 @@ function hoisted {
   java -jar ~/tools/hoisted.jar -server $dir
 }
 
+# https://stackoverflow.com/questions/45012853/docker-container-stop-when-mac-sleep
+
 function docker-cleanup {
   docker ps | awk '{print $1}' | grep -v CONTAINER | xargs docker kill
   docker rm $(docker ps -q -f status=exited)
