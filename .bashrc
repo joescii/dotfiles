@@ -189,8 +189,11 @@ function psql-start {
 function psql-stop {
   docker kill $(docker ps | grep psql-docker | awk {'print $1'})
 }
+function psql-bash { 
+  docker exec -it psql-docker /bin/bash -c "$@"
+}
 function psql { 
-  docker exec -it psql-docker psql -h localhost -U postgres
+  psql-bash "psql -h localhost -U postgres"
 }
 
 export code=~/Documents/code/
