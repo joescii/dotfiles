@@ -220,6 +220,8 @@ function psql-restore {
     localPath=$2
   fi
 
+  psql-bash "psql -h localhost -U postgres -c \"drop database if exists $dbname\""
+  psql-bash "psql -h localhost -U postgres -c \"create database $dbname\""
   psql-bash "pg_restore -h localhost -U postgres -d $dbname /var/db-backups/$localPath"
 }
 
