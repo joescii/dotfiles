@@ -196,6 +196,18 @@ function psql {
   psql-bash "psql -h localhost -U postgres"
 }
 
+function psql-backup {
+  if [ $# -lt 2 ]; then
+    echo "psql-backup <dbname> <filename>"
+    return -1
+  else
+    dbname=$1
+    localPath=$2
+  fi
+
+  psql-bash "pg_dump -Fc -h localhost -U postgres -d $dbname > /var/db-backups/$localPath"
+}
+
 export code=~/Documents/code/
 export oss=$code/oss/
 export clients=$code/clients/
