@@ -91,7 +91,7 @@ function cert-fetch {
 
 function jdk7 {
   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
-  export SBT_OPTS="-Xms512M -Xmx2G -Xss256m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=512M -Dsun.io.serialization.extendedDebugInfo=true"
+  export SBT_OPTS="-Xms512M -Xmx2G -Xss8m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=512M -Dsun.io.serialization.extendedDebugInfo=true"
   export MAVEN_OPTS=$SBT_OPTS
 }
 
@@ -99,6 +99,7 @@ function jdk8 {
   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home
   export SBT_OPTS="-Xms512M -Xmx2G -Xss256m -XX:+CMSClassUnloadingEnabled -Dsun.io.serialization.extendedDebugInfo=true"
   export MAVEN_OPTS=$SBT_OPTS
+  export JAVA_OPTIONS="-Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=9010 -Dcom.sun.management.jmxremote.rmi.port=9011 -Djava.rmi.server.hostname=localhost -Dcom.sun.management.jmxremote.local.only=false"
 }
 
 # Call jdk8 to set our options (by default this is already the JAVA_HOME)
@@ -177,6 +178,7 @@ function docker-cleanup {
   docker rm $(docker ps -q -f status=exited)
   docker volume rm $(docker volume ls -qf dangling=true)
   docker rmi $(docker images | grep '<none>' | awk '{print $3}')
+  docker container prune
 }
 
 export psqlVersion=9.5.17
@@ -196,7 +198,7 @@ function psql-bash {
     docker exec -it psql-docker /bin/bash -c "$@"
   fi
 }
-function psql { 
+function psql-docker { 
   psql-bash "psql -h localhost -U postgres"
 }
 
@@ -213,7 +215,7 @@ function psql-backup {
 }
 function psql-restore {
   if [ $# -lt 2 ]; then
-    echo "psql-backup <dbname> <filename>"
+    echo "psql-restore <dbname> <filename>"
     return -1
   else
     dbname=$1
@@ -235,4 +237,7 @@ if [ -d ~/.clients ]; then
     source $f
   done 
 fi
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
