@@ -1,11 +1,9 @@
 [user]
 	name = Joe Daniel Barnes
-	email = joe@joescii.com
+	email = joedaniel@cognitops.com
 [core]
 	editor = vim
-	attributesfile = ~/.gitattributes
-[merge "json"]
-	name = custom merge driver for json files
-	driver = git-json-merge %A %O %B
 [credential]
 	helper = osxkeychain
+[pull]
+	rebase = true
