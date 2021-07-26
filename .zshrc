@@ -1,5 +1,5 @@
 
-export PATH="$HOME/.jenv/bin:$PATH"
+export PATH="$HOME/.jenv/bin:/Users/joedaniel/Library/Application Support/Coursier/bin:$PATH"
 eval "$(jenv init -)"
 
 export DOCKERHOST=`bash ~/.dotfiles/.get_my_ip.sh`
