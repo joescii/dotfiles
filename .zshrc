@@ -52,8 +52,10 @@ gcloud-account(){
     gcloud config set account joedaniel-build-service-accoun@build-240615.iam.gserviceaccount.com
   elif [ "$1" = "beta" ]; then
     gcloud config set account joedaniel-beta-service-account@beta-243321.iam.gserviceaccount.com
+    gcloud container clusters get-credentials beta-autopilot-cluster --zone us-central1 --project beta-243321
   elif [ "$1" = "prod" ]; then
     gcloud config set account joedaniel-prod-service-account@prod-238418.iam.gserviceaccount.com
+    gcloud container clusters get-credentials prod-kubernetes-cluster-1 --zone us-central1-f --project prod-238418
   else
     echo "Unknown account: $1"
   fi
