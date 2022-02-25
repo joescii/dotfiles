@@ -47,11 +47,14 @@ if [ -f '/Users/joedaniel/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 
 gcloud-account(){
   if [ "$1" = "build" ]; then
+    export GOOGLE_APPLICATION_CREDENTIALS=/Users/joedaniel/gcp/build-240615-f65c1944eb32.json
     gcloud config set project build-240615
   elif [ "$1" = "beta" ]; then
+    unset GOOGLE_APPLICATION_CREDENTIALS
     gcloud config set project beta-243321
     gcloud container clusters get-credentials cognitops-align-beta --zone us-central1 --project beta-243321
   elif [ "$1" = "prod" ]; then
+    unset GOOGLE_APPLICATION_CREDENTIALS
     gcloud config set project prod-238418
     gcloud container clusters get-credentials cognitops-align-prod --zone us-central1 --project prod-238418
   else
