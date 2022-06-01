@@ -8,32 +8,36 @@ export COG_BASE_DIR=/Users/joedaniel/code/cognitops/
 serv-pull(){
   local services=($@) 
   if [ -z $services ]; then
-    services=(kafka postgres redis)
+    services=(postgres redis)
   fi
   for service in "${services[@]}"; do
     docker-compose -f "$COG_BASE_DIR/tools/$service/docker-compose.yml" pull &;
   done
+  docker-compose -f "$COG_BASE_DIR/tools/kafka/local-docker/docker-compose.yml" pull &;
   wait
 }
 serv-down(){
   local services=($@) 
   if [ -z $services ]; then
-    services=(kafka postgres redis)
+    services=(postgres redis)
   fi
   for service in "${services[@]}"; do
     docker-compose -f "$COG_BASE_DIR/tools/$service/docker-compose.yml" down &;
   done
+  docker-compose -f "$COG_BASE_DIR/tools/kafka/local-docker/docker-compose.yml" down &;
   wait
 }
 serv-up(){
   local services=($@) 
   if [ -z $services ]; then
-    services=(kafka postgres redis)
+    services=(postgres redis)
   fi
   for service in "${services[@]}"; do
     docker-compose -f "$COG_BASE_DIR/tools/$service/docker-compose.yml" pull && \
       docker-compose -f "$COG_BASE_DIR/tools/$service/docker-compose.yml" up -d &;
   done
+  docker-compose -f "$COG_BASE_DIR/tools/kafka/local-docker/docker-compose.yml" pull && \
+    docker-compose -f "$COG_BASE_DIR/tools/kafka/local-docker/docker-compose.yml" up -d &;
   wait
 }
 
