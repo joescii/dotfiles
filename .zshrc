@@ -66,7 +66,7 @@ gcloud-account(){
   fi
 }
 
-alias postgres-proxy-beta='/Users/joedaniel/tools/cloud_sql_proxy -instances=beta-243321:us-central1:postgres-beta-1=tcp:5432'
+alias postgres-proxy-uk='/Users/joedaniel/tools/cloud_sql_proxy -instances=prod-238418:europe-west2:align-europe-west2=tcp:5432'
 alias postgres-proxy-prod='/Users/joedaniel/tools/cloud_sql_proxy -instances=prod-238418:us-central1:postgres-prod-1=tcp:5432'
 
 bindkey '^r' history-incremental-search-backward
